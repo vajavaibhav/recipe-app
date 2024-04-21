@@ -1,7 +1,10 @@
+import { EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.model';
 
 export class RecipeService {
-  recipes: Recipe[] = [
+  public recipeSelected = new EventEmitter<Recipe>();
+
+  private recipes: Recipe[] = [
     new Recipe(
       'Pesto Pasta',
       'Tasty Italian pasta with pesto sauce',
@@ -19,8 +22,7 @@ export class RecipeService {
     ),
   ];
 
-  getRecipes(){
+  getRecipes() {
     return this.recipes.slice();
   }
-  
 }
