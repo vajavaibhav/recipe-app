@@ -6,29 +6,27 @@ import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrl: './recipe-detail.component.css'
+  styleUrl: './recipe-detail.component.css',
 })
-export class RecipeDetailComponent implements OnInit{
+export class RecipeDetailComponent implements OnInit {
+  selectedRecipe: Recipe;
+  id: number;
 
-  selectedRecipe : Recipe;
-  id : number
+  constructor(
+    private recipeService: RecipeService,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor(private recipeService: RecipeService ,
-              private route: ActivatedRoute
-  ){}
-
-  onSendToShoppingList(){
-    this.recipeService.addIngredientsToShoppingList(this.selectedRecipe.ingredients)
+  onSendToShoppingList() {
+    this.recipeService.addIngredientsToShoppingList(
+      this.selectedRecipe.ingredients
+    );
   }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.selectedRecipe = this.recipeService.getRecipe(this.id)
-      }
-    )
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.selectedRecipe = this.recipeService.getRecipe(this.id);
+    });
   }
-
-  
 }

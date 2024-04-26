@@ -5,16 +5,14 @@ import { RecipeService } from '../recipe.service';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrl: './recipe-list.component.css'
+  styleUrl: './recipe-list.component.css',
 })
-export class RecipeListComponent implements OnInit{
+export class RecipeListComponent implements OnInit {
+  recipes: Recipe[];
 
-  recipes : Recipe[];
-
-  constructor(private recipeService: RecipeService){}
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes()
+    this.recipes = this.recipeService.getRecipes();
   }
-
 }
