@@ -10,7 +10,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './components/shared/dropdown.directive';
-import { ShoppingListService } from './components/shopping/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
@@ -30,7 +29,7 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
     RecipeEditComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
-  providers: [ShoppingListService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

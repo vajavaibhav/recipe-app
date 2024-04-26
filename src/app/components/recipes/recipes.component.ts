@@ -1,13 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { Recipe } from './recipe.model';
-import { RecipeService } from './recipe.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.css',
-  providers: [RecipeService],
+  styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {}
