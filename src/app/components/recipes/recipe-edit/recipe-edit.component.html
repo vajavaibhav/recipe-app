@@ -1,1 +1,113 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="margin-right: 4px"
+          >
+            Save
+          </button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name : </label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL : </label>
+            <input
+              id="imagePath"
+              type="text"
+              class="form-control"
+              formControlName="imagePath"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img src="" class="img-responsive" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description : </label>
+            <textarea
+              id="description"
+              type="text"
+              class="form-control"
+              rows="6"
+              formControlName="description"
+            >
+            </textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div
+            class="row"
+            *ngFor="let ingredientCtrl of getControl(); let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-xs-8">
+              <label for="ingredientName"> Ingredient : </label>
+              <input
+                type="text"
+                class="form-control"
+                name="ingredient"
+                id="ingredient"
+                formControlName="name"
+              />
+            </div>
+
+            <div class="col-xs-2">
+              <label for="amount"> Amount : </label>
+              <input
+                type="number"
+                class="form-control"
+                name="amount"
+                id="amount"
+                formControlName="amount"
+              />
+            </div>
+
+            <div class="col-xs-2">
+              <label for="remove"> Remove : </label>
+              <button
+                type="button"
+                class="btn btn-danger"
+                id="delete"
+                name="delete"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-success" (click)="onAddingNewIngredient()"> New Ingredient </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
