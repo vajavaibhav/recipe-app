@@ -34,7 +34,7 @@
               type="submit"
               [disabled]="!form.valid"
             >
-              Add
+             {{ editMode ? 'Update' : 'Add' }}
             </button>
             <button class="btn btn-danger" type="button">Remove Item</button>
             <button class="btn btn-primary" type="button">Clear</button>
