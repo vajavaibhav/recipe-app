@@ -34,10 +34,19 @@
               type="submit"
               [disabled]="!form.valid"
             >
-             {{ editMode ? 'Update' : 'Add' }}
+              {{ editMode ? "Update" : "Add" }}
             </button>
-            <button class="btn btn-danger" type="button">Remove Item</button>
-            <button class="btn btn-primary" type="button">Clear</button>
+            <button
+              class="btn btn-danger"
+              type="button"
+              (click)="onRemoveItem()"
+              *ngIf="editMode"
+            >
+              Remove Item
+            </button>
+            <button class="btn btn-primary" type="button" (click)="onClear()">
+              Clear
+            </button>
           </div>
         </div>
       </div>
