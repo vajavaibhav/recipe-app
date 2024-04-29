@@ -11,7 +11,11 @@
           >
             Save
           </button>
-          <button type="button" class="btn btn-danger">Cancel</button>
+          <button 
+          type="button" 
+          class="btn btn-danger"
+          (click)="onCancel()"
+          >Cancel</button>
         </div>
       </div>
       <div class="row">
@@ -36,13 +40,14 @@
               type="text"
               class="form-control"
               formControlName="imagePath"
+              #imagePath
             />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img src="" class="img-responsive" />
+          <img [src]="imagePath.value" class="img-responsive" />
         </div>
       </div>
       <div class="row">
@@ -106,6 +111,7 @@
                 class="btn btn-danger"
                 id="delete"
                 name="delete"
+                (click)="onDelete(i)"
               >
                 Delete
               </button>
