@@ -11,44 +11,14 @@ export class RecipeService {
   newRecipes = new Subject<Recipe[]>();
 
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Pesto Pasta',
-      'Tasty Italian pasta with pesto sauce',
-      'https://www.nourishandtempt.com/wp-content/uploads/2022/04/357B765F-F3DC-47E7-AEA2-58A1398F1419-scaled.jpg',
-      [
-        new Ingredient('Pasta', 3),
-        new Ingredient('Pesto sauce', 2),
-        new Ingredient('Basil', 5),
-        new Ingredient('Cashew', 7),
-      ]
-    ),
-    new Recipe(
-      'Red Pasta',
-      'Tasty Italian pasta with Red sauce',
-      'https://www.theburntbuttertable.com/wp-content/uploads/2022/03/roast-tomato-pasta-sauce-2.jpg',
-      [
-        new Ingredient('Pasta', 3),
-        new Ingredient('Red sauce', 2),
-        new Ingredient('Basil', 4),
-        new Ingredient('Red chillies', 7),
-      ]
-    ),
-    new Recipe(
-      'Pink Pasta',
-      'Tasty Italian pasta with pink sauce',
-      'https://beatthebudget.com/wp-content/uploads/2022/06/Pink-Sauce-Pasta-Tiktok-Pasta-featured-image-1200-x-1500px.jpg',
-      [
-        new Ingredient('Pasta', 3),
-        new Ingredient('Red sauce', 1),
-        new Ingredient('White sauce', 1),
-        new Ingredient('Basil', 4),
-        new Ingredient('Cream', 2),
-      ]
-    ),
-  ];
+  private recipes: Recipe[] = []
 
   constructor(private shoppingService: ShoppingListService) {}
+
+  setRecipes(recipes : Recipe[]){
+    this.recipes = recipes;
+    this.newRecipes.next(this.recipes.slice())
+  }
 
   getRecipes() {
     return this.recipes.slice();
