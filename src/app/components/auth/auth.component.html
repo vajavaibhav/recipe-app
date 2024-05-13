@@ -1,6 +1,19 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm">
+    <div class="text-center">
+      <loading-spinner *ngIf="isLoading"></loading-spinner>
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="(isCredentialsError || isOtherError) && !isLoading"
+    >
+      {{
+        isCredentialsError
+          ? "Provided information is not correct"
+          : "Error getting the response from the server"
+      }}
+    </div>
+    <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" *ngIf="!isLoading">
       <div class="form-group">
         <label name="email">Email</label>
         <input
@@ -25,7 +38,11 @@
           required
         />
       </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!authForm.valid"
+      >
         {{ isLogin ? "Login" : "Sign Up" }}
       </button>
       |
