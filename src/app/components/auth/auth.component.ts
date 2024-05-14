@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { AuthService, authResponse } from './auth.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css',
+  templateUrl: './auth.component.html'
 })
 export class AuthComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private router : Router) {}
 
   isLogin = false;
   isLoading = false;
-  isCredentialsError = false;
-  isOtherError = false;
+  error: string = null;
 
   onSwitchToView() {
     this.isLogin = !this.isLogin;
@@ -23,30 +24,30 @@ export class AuthComponent {
     if (!authForm.valid) {
       return;
     }
+    const email = authForm.value.email;
+    const password = authForm.value.password;
+    let authObs: Observable<authResponse>;
 
     this.isLoading = true;
     if (this.isLogin) {
+      authObs = this.authService.loginUser(email, password);
     } else {
-      this.authService
-        .signupUser(authForm.value.email, authForm.value.password)
-        .subscribe({
-          next: (responseData) => {
-            console.log(responseData);
-            this.isCredentialsError = false;
-            this.isOtherError = false;
-            this.isLoading = false;
-          },
-          error: (err) => {
-            if (err.error.error.message === 'EMAIL_EXISTS') {
-              this.isCredentialsError = true;
-              this.isLoading = false;
-            } else {
-              this.isOtherError = true;
-              this.isLoading = false;
-            }
-          },
-        });
+      authObs = this.authService.signupUser(email, password);
     }
+
+    authObs.subscribe({
+      next: (response) => {
+        this.isLoading = false;
+        this.error = null;
+        this.router.navigate(['/recipes'])
+      },
+      error: (errMessage) => {
+        console.log(errMessage);
+        this.error = errMessage;
+        this.isLoading = false;
+      },
+    });
+
     authForm.reset();
   }
 }
