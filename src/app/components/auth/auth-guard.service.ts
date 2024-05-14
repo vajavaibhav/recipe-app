@@ -10,7 +10,7 @@ import { Observable, map, take } from 'rxjs';
 
 import { AuthService } from './auth.service';
 
-@Injectable({providedIn :'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -26,7 +26,6 @@ export class AuthGuard {
       take(1),
       map((user) => {
         const isAuth = !!user;
-
         if (isAuth) {
           return true;
         }

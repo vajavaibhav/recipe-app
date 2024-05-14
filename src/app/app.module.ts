@@ -18,6 +18,8 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
 import { AuthComponent } from './components/auth/auth.component';
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './components/auth/auth-interceptor.service';
+import { AlertComponent } from './components/shared/alter/alert.component';
+import { PlaceholderDirective } from './components/shared/placeholder/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthInterceptorService } from './components/auth/auth-interceptor.servi
     RecipeStartComponent,
     RecipeEditComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AlertComponent,
+    PlaceholderDirective,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,13 @@ import { AuthInterceptorService } from './components/auth/auth-interceptor.servi
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi:true }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
