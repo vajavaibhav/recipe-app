@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { AuthService, authResponse } from './auth.service';
 import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
-import { AlertComponent } from '../shared/alter/alert.component';
+import { AlertComponent } from '../shared/alert/alert.component';
 
 @Component({
   selector: 'app-auth',

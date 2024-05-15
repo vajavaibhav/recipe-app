@@ -5,26 +5,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DropdownDirective } from './components/shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './components/auth/auth.component';
-import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './components/auth/auth-interceptor.service';
-import { AlertComponent } from './components/shared/alter/alert.component';
-import { PlaceholderDirective } from './components/shared/placeholder/placeholder.directive';
 import { RecipesModule } from './components/recipes/recipes.module';
 import { ShoppingModule } from './components/shopping/shopping.module';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    DropdownDirective,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-    PlaceholderDirective,
-  ],
+  declarations: [AppComponent, HeaderComponent, AuthComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -32,7 +21,8 @@ import { ShoppingModule } from './components/shopping/shopping.module';
     HttpClientModule,
     AppRoutingModule,
     RecipesModule,
-    ShoppingModule
+    ShoppingModule,
+    SharedModule,
   ],
   providers: [
     {
