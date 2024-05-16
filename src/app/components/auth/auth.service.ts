@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 import { User } from './user.model';
+import { environment } from '../../../environments/environment';
 
 export interface authResponse {
   idToken: string;
@@ -25,7 +26,8 @@ export class AuthService {
   signupUser(email: string, password: string) {
     return this.http
       .post<authResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC30pAIbIuWc8-5KfuV_eYoiaxN8cr-hQE',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          environment.FIREBASE_API_KEY,
         {
           email: email,
           password: password,
@@ -48,7 +50,8 @@ export class AuthService {
   loginUser(email: string, password: string) {
     return this.http
       .post<authResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC30pAIbIuWc8-5KfuV_eYoiaxN8cr-hQE',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+          environment.FIREBASE_API_KEY,
         {
           email: email,
           password: password,
