@@ -16,10 +16,6 @@ export interface ShoppingState {
   editedIngredientIndex: number;
 }
 
-export interface AppState {
-  shoppingList: ShoppingState;
-}
-
 const initialState: ShoppingState = {
   ingredients: [
     new Ingredient('Raw Pasta', 3),

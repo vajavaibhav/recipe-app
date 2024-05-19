@@ -8,7 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
 import { CoreModule } from './core.module';
 import { StoreModule } from '@ngrx/store';
-import { shoppingReducer } from './components/shopping/store/shopping.reducer';
+import { appReducer } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './components/auth/store/auth.effects';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,9 +20,8 @@ import { shoppingReducer } from './components/shopping/store/shopping.reducer';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot({
-      shoppingList : shoppingReducer
-    }),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   bootstrap: [AppComponent],
 })
